@@ -1,0 +1,44 @@
+#!/bin/bash
+
+$PWD = pwd >> /dev/null
+
+# Name der Datei, aus der die Zeilen gelesen werden sollen
+DATEI="config/accounts/account_rest.txt"
+
+# Befehl, an den die Zeilen angehängt werden
+BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+BEFEHL2="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --datebefore 20111231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+
+#BEFEHL="yt-dlp -vF -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20231231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+
+while IFS= read -r ZEILE; do
+  # Füge die Zeile an den Befehl an und führe den Befehl aus
+  $BEFEHL $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
+  $BEFEHL2 $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
+  #echo "$BEFEHL $ZEILE"
+done < "$DATEI"
+
+
+# Name der Datei, aus der die Zeilen gelesen werden sollen
+DATEI="config/accounts/account_music.txt"
+
+# Befehl, an den die Zeilen angehängt werden
+BEFEHL="yt-dlp -i -x -k --audio-format mp3 --yes-playlist --download-archive config/yt-archive.txt -o music/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4"
+
+while IFS= read -r ZEILE; do
+  # Füge die Zeile an den Befehl an und führe den Befehl aus
+  $BEFEHL $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
+  #echo "$BEFEHL $ZEILE"
+done < "$DATEI"
+
+
+#DATEI="config/accounts/account_rest.txt"
+#
+## Befehl, an den die Zeilen angehängt werden
+#BEFEHL="yt-dlp -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20221231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+#
+#while IFS= read -r ZEILE; do
+#  # Füge die Zeile an den Befehl an und führe den Befehl aus
+#  $BEFEHL $ZEILE 
+#  #echo "$BEFEHL $ZEILE"
+#done < "$DATEI"

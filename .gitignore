@@ -3,3 +3,5 @@
 *.webm
 *.mkv
 log*
+*.part
+*.ytdl

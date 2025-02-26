@@ -113,6 +113,7 @@ for i in dictionary:
 
 list_for_sami = []
 list_for_sami_reverse = []
+one = 0
 
 while dictionary:
     list_in_iteration = []
@@ -145,6 +146,19 @@ while dictionary:
 
     for i in dictionaries_to_delete:
         silent = dictionary.pop(i)
+    if one == 0:
+        try:
+            file = "playlist_one.txt"
+            with open(file, "w") as my_file:
+                for i in list_in_iteration:
+                    if i.startswith("20youtube"):
+                        continue
+                    else:
+                        my_file.write(i)
+                        my_file.write("\n")
+        except:
+            pass
+        one = 1
 
 try:
     number = str(len(list_for_sami))
@@ -194,6 +208,7 @@ for i in longvid:
 
 list_for_sami = []
 list_for_sami_reverse = []
+one = 0
 
 while dictionary:
     list_in_iteration = []
@@ -223,6 +238,23 @@ while dictionary:
 
     for i in dictionaries_to_delete:
         silent = dictionary.pop(i)
+
+    if one == 0:
+        try:
+            number = str(len(list_in_iteration))
+            while len(number) <= 3:
+                number = '0' + number
+            file = "playlist_" + number + "_one.txt"
+            with open(file, "w") as my_file:
+                for i in list_in_iteration:
+                    if i.startswith("20youtube"):
+                        continue
+                    else:
+                        my_file.write(i)
+                        my_file.write("\n")
+        except:
+            pass
+        one = 1
 
 try:
     number = str(len(list_for_sami))

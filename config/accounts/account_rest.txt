@@ -3,9 +3,9 @@ https://www.youtube.com/@DailyDoseOfInternet
 https://www.youtube.com/@FritzMeinecke
 --match-title falsch https://www.youtube.com/@ComedyKollektiv
 https://www.ardmediathek.de/serie/falsch-aber-anders-lustig/staffel-1/Y3JpZDovL3JiYi1vbmxpbmUuZGUvZmFsc2NoLWFiZXItYW5kZXJzLWx1c3RpZw/1
---match-title Irrsinn https://www.youtube.com/@extra3
+--sponsorblock-remove all --match-title Irrsinn https://www.youtube.com/@extra3
 --match-title CATCH https://www.youtube.com/@DerSeboo
-https://www.youtube.com/playlist?list=PLNipp-osUqlzOcPEaMwTAdvI4GKSIeCnq #Gipfeltreffen
+--sponsorblock-remove all https://www.youtube.com/playlist?list=PLNipp-osUqlzOcPEaMwTAdvI4GKSIeCnq #Gipfeltreffen
 https://www.zdf.de/show/mai-think-x-die-show
 https://www.youtube.com/@Toolbrothers
 https://www.youtube.com/@achNina
@@ -25,18 +25,18 @@ https://www.youtube.com/@dschooles8941
 https://www.youtube.com/@babsi137
 https://www.youtube.com/@DavisSchulz
 https://www.youtube.com/@DerBash
-https://www.youtube.com/@KurzgesagtDE
+--sponsorblock-remove all https://www.youtube.com/@KurzgesagtDE
 https://www.youtube.com/@DirtyWhitePaint
 https://www.youtube.com/@DIYPerks
-https://www.youtube.com/@DorFuchs
+--sponsorblock-remove all https://www.youtube.com/@DorFuchs
 https://www.youtube.com/@Doriandotslash
 https://www.youtube.com/@elemen-luca
-https://www.youtube.com/@EureVideosFahrnuenftig
+--sponsorblock-remove all https://www.youtube.com/@EureVideosFahrnuenftig
 https://www.youtube.com/@FabioMariano
 https://www.youtube.com/@Florian.Dalwigk
 https://www.youtube.com/@Frodoapparat
 https://www.youtube.com/@DerGeheimKanal
-https://www.youtube.com/@General.Knowledge
+--sponsorblock-remove all https://www.youtube.com/@General.Knowledge
 https://www.youtube.com/@gifssound2532
 https://www.youtube.com/@i12bretro
 https://www.youtube.com/@MysteryGuitarMan
@@ -46,17 +46,17 @@ https://www.youtube.com/@dechangeman
 https://www.youtube.com/@JuliensBlog
 https://www.youtube.com/@kurzgesagt
 https://www.youtube.com/@letsskipthebla
-https://www.youtube.com/@lockpickinglawyer
-https://www.youtube.com/@MadeWithLayers
+--sponsorblock-remove all https://www.youtube.com/@lockpickinglawyer
+--sponsorblock-remove all https://www.youtube.com/@MadeWithLayers
 https://www.youtube.com/@maithinkx
 https://www.youtube.com/@marcussVRLinux
 https://www.youtube.com/@martifischer
-https://www.youtube.com/@MattJordanWoodturning
+--sponsorblock-remove all https://www.youtube.com/@MattJordanWoodturning
 https://www.youtube.com/@methodischinkorrekt2348
 https://www.youtube.com/@MinutePhysics
-https://www.youtube.com/@MythosOfGaming
+--sponsorblock-remove all https://www.youtube.com/@MythosOfGaming
 https://www.youtube.com/@nukazooka
-https://www.youtube.com/@OttoBulletproof
+--sponsorblock-remove all https://www.youtube.com/@OttoBulletproof
 --match-title Buddies https://www.youtube.com/@joeykelly.official
 https://www.youtube.com/@paranoidlife
 https://www.youtube.com/@PaweZadrozniak
@@ -65,7 +65,7 @@ https://www.youtube.com/@PlzDontSueColdmirror
 https://www.youtube.com/@profengel
 https://www.youtube.com/@RealCivilEngineerGaming
 https://www.youtube.com/@reasyofficial
-https://www.youtube.com/@MissionErde
+--sponsorblock-remove all https://www.youtube.com/@MissionErde
 https://www.youtube.com/@rocketjump
 https://www.youtube.com/@RumbleBeast666
 https://www.youtube.com/@ruthe
@@ -75,9 +75,9 @@ https://www.youtube.com/@SaschaHellinger
 https://www.youtube.com/@say_hello
 https://www.youtube.com/@SemperCensio
 https://www.youtube.com/@SemperVideo
-https://www.youtube.com/@Simplicissimus
+--sponsorblock-remove all https://www.youtube.com/@Simplicissimus
 https://www.youtube.com/@SonneTodSterne
-https://www.youtube.com/@STRG_F
+--sponsorblock-remove all https://www.youtube.com/@STRG_F
 https://www.youtube.com/@StuffMadeHere
 https://www.youtube.com/@SunlessKhan
 https://www.youtube.com/@TechHut
@@ -87,18 +87,18 @@ https://www.youtube.com/@TomSka
 https://www.youtube.com/@TomSkaAndFriends
 https://www.youtube.com/@tooncraft
 https://www.youtube.com/@unickseu
-https://www.youtube.com/@unsympathischtv
-https://www.youtube.com/@veritasium
-https://www.youtube.com/@VivaLaDirtLeague
-https://www.youtube.com/@Vox
+https://www.youtube.com/@unsympathischtv 
+--sponsorblock-remove all https://www.youtube.com/@veritasium
+--sponsorblock-remove all https://www.youtube.com/@VivaLaDirtLeague
+--sponsorblock-remove all https://www.youtube.com/@Vox
 https://www.youtube.com/@Vsauce
 https://www.youtube.com/@wissenhatkeineneigentumeri9889
-https://www.youtube.com/@Techtastisch
+--sponsorblock-remove all https://www.youtube.com/@Techtastisch
 https://www.youtube.com/@stevemould
 https://www.youtube.com/@mediacccde
 https://www.youtube.com/@MarcUweKling
 https://www.youtube.com/@7_vs._wild
-https://www.youtube.com/@wbs_legal
+--sponsorblock-remove all https://www.youtube.com/@wbs_legal
 https://www.youtube.com/@CleoAbram
 https://www.youtube.com/@ElectroBOOM
 https://www.youtube.com/@UniverseLair

@@ -19,7 +19,8 @@ fi
 
 # Befehl, an den die Zeilen angehängt werden
 BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
-BEFEHL2="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --datebefore 20111231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+#BEFEHL2="yt-dlp -vU -i --yes-playlist --sponsorblock-remove all --download-archive config/yt-archive_sponsor.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_sponsorblock_%(id)s.%(ext)s --merge-output-format mp4 "
+#BEFEHL2="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --datebefore 20111231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
 
 #BEFEHL="yt-dlp -vF -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20231231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
 #watch -n 2 "pgrep -af yt-dlp | grep -oP 'https?://\S+'" &

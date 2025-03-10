@@ -280,3 +280,23 @@ try:
                 my_file.write("\n")
 except:
     pass
+
+
+
+patterns = ["./20youtub*/*/*/*.mp4", "./202*/*/*.mp4", "./music/*/*.mp4"]
+files = []
+for pattern in patterns:
+    files.extend(glob.glob(pattern))
+
+sorted_files_gk = sorted(files, key=os.path.getsize, reverse=True)
+sorted_files_kg = sorted(files, key=os.path.getsize, reverse=False)
+    
+with open("playlist_nach_größe_gk.txt", "w") as f:
+    for file in sorted_files_gk:
+        f.write(file + "\n")
+
+with open("playlist_nach_größe_kg.txt", "w") as f:
+    for file in sorted_files_kg:
+        f.write(file + "\n")
+
+

@@ -48,7 +48,7 @@ fi
 
 
 # Befehl, an den die Zeilen angehängt werden
-BEFEHL="yt-dlp -i -x -k --audio-format mp3 --yes-playlist --download-archive config/yt-archive.txt -o music/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4"
+BEFEHL="yt-dlp -i -x -k --audio-format mp3 --yes-playlist --download-archive config/yt-archive.txt -o %(upload_date)s/%(uploader)s_music/%(title)s_%(id)s.%(ext)s --merge-output-format mp4"
 
 #watch -n 2 "pgrep -af yt-dlp | grep -oP 'https?://\S+'" &
 

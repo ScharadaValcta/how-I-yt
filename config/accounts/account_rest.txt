@@ -27,7 +27,7 @@ https://www.youtube.com/@DavisSchulz
 https://www.youtube.com/@DerBash
 --sponsorblock-remove all https://www.youtube.com/@KurzgesagtDE
 https://www.youtube.com/@DirtyWhitePaint
-https://www.youtube.com/@DIYPerks
+--sponsorblock-remove all https://www.youtube.com/@DIYPerks
 --sponsorblock-remove all https://www.youtube.com/@DorFuchs
 https://www.youtube.com/@Doriandotslash
 https://www.youtube.com/@elemen-luca
@@ -53,7 +53,7 @@ https://www.youtube.com/@marcussVRLinux
 https://www.youtube.com/@martifischer
 --sponsorblock-remove all https://www.youtube.com/@MattJordanWoodturning
 https://www.youtube.com/@methodischinkorrekt2348
-https://www.youtube.com/@MinutePhysics
+--sponsorblock-remove all https://www.youtube.com/@MinutePhysics
 --sponsorblock-remove all https://www.youtube.com/@MythosOfGaming
 https://www.youtube.com/@nukazooka
 --sponsorblock-remove all https://www.youtube.com/@OttoBulletproof
@@ -78,9 +78,9 @@ https://www.youtube.com/@SemperVideo
 --sponsorblock-remove all https://www.youtube.com/@Simplicissimus
 https://www.youtube.com/@SonneTodSterne
 --sponsorblock-remove all https://www.youtube.com/@STRG_F
-https://www.youtube.com/@StuffMadeHere
+--sponsorblock-remove all https://www.youtube.com/@StuffMadeHere
 https://www.youtube.com/@SunlessKhan
-https://www.youtube.com/@TechHut
+--sponsorblock-remove all https://www.youtube.com/@TechHut
 https://www.youtube.com/@TheSecretLifeofScientists
 https://www.youtube.com/@woelken
 https://www.youtube.com/@TomSka

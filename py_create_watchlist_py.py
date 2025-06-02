@@ -2,8 +2,8 @@
 
 import glob
 import os
-
-#dir_to_exclude = ['B', 'C']
+import subprocess
+from collections import defaultdict
 
 #delete playlist*.txt
 txt = glob.glob('playlist*.txt')
@@ -42,26 +42,6 @@ for i in datum:
     else:
         dictionary[splited[1]] = [i]
 
-'''
-    words = set()
-    word = ''
-    name = splited[-1]
-
-    for char in name[:-16]:
-        if char.isalnum():
-            word += char
-        else:
-            if word not in wordlist and len(word) >= 8 and not word.isnumeric():
-                words.add(word.lower())
-            word = ''
-
-    for word in words:
-        if word in worddic:
-            worddic[word] = worddic[word] + [i]
-        else:
-            worddic[word] = [i]
-'''
-
 for i in longvid:
     splited = i.split("/")
     if len(splited[1]) == 8:
@@ -71,33 +51,6 @@ for i in longvid:
             dictionary[splited[2]] = [i]
     else:
         print(i)
-
-'''
-    words = set()
-    word = ''
-    name = splited[-1]
-
-    for char in name[:-16]:
-        if char.isalnum():
-            word += char
-        else:
-            if word not in wordlist and len(word) >= 8 and not word.isnumeric():
-                words.add(word.lower())
-            word = ''
-
-    for word in words:
-        if word in worddic:
-            worddic[word] = worddic[word] + [i]
-        else:
-            worddic[word] = [i]
-
-
-for i in worddic:
-    if 20 <= len(worddic[i]) <= 80:
-        print(i)
-        #print(len(worddic[i]))
-        #print(worddic[i])
-'''
 
 for i in dictionary:
     number = str(len(dictionary[i]))
@@ -151,11 +104,8 @@ while dictionary:
             file = "playlist_one.txt"
             with open(file, "w") as my_file:
                 for i in list_in_iteration:
-                    if i.startswith("20youtube"):
-                        continue
-                    else:
-                        my_file.write(i)
-                        my_file.write("\n")
+                    my_file.write(i)
+                    my_file.write("\n")
         except:
             pass
         one = 1
@@ -244,14 +194,11 @@ while dictionary:
             number = str(len(list_in_iteration))
             while len(number) <= 3:
                 number = '0' + number
-            file = "playlist_" + number + "_one.txt"
+            file = "playlist_one_new.txt"
             with open(file, "w") as my_file:
                 for i in list_in_iteration:
-                    if i.startswith("20youtube"):
-                        continue
-                    else:
-                        my_file.write(i)
-                        my_file.write("\n")
+                    my_file.write(i)
+                    my_file.write("\n")
         except:
             pass
         one = 1
@@ -281,9 +228,7 @@ try:
 except:
     pass
 
-
-
-patterns = ["./20youtub*/*/*/*.mp4", "./202*/*/*.mp4", "./music/*/*.mp4"]
+patterns = ["./20youtub*/*/*/*.mp4", "./202*/*/*.mp4"]
 files = []
 for pattern in patterns:
     files.extend(glob.glob(pattern))
@@ -299,4 +244,75 @@ with open("playlist_nach_größe_kg.txt", "w") as f:
     for file in sorted_files_kg:
         f.write(file + "\n")
 
+def get_video_length(filename):
+    try:
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", filename],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        return float(result.stdout.strip())
+    except Exception:
+        return 0
 
+sorted_files_length = sorted(files, key=get_video_length, reverse=True)
+
+with open("playlist_nach_länge.txt", "w") as f:
+    for file in sorted_files_length:
+        f.write(file + "\n")
+
+
+def get_video_resolution(filename):
+    try:
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "v:0",
+             "-show_entries", "stream=width,height",
+             "-of", "csv=p=0", filename],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        #return result.stdout.strip().replace(",", "x")
+        width, height = map(int, result.stdout.strip().split(","))
+        return "hochkant" if height > width else "quer"
+    except Exception:
+        return "unknown"
+
+# Dictionary für die Playlists nach Auflösung
+resolution_dict = defaultdict(list)
+
+for file in files:
+    resolution = get_video_resolution(file)
+    resolution_dict[resolution].append(file)
+    resolution_dict[resolution].sort()
+
+# Für jede Auflösung eine eigene Playlist erstellen
+for resolution, file_list in resolution_dict.items():
+    playlist_filename = f"playlist_auflösung_{resolution}.txt"
+    with open(playlist_filename, "w") as f:
+        for file in file_list:
+            f.write(file + "\n")
+
+#playlist_$number_$year.txt
+yeardict = dict()
+for i in sorted_files:
+    splited = i.split("/")
+    if len(splited[0]) == 8 and splited[0].isnumeric():
+        year = splited[0][0:4]
+    else:
+        year = splited[1][0:4]
+    if year not in yeardict:
+        yeardict[year] = []
+    yeardict[year].append(i)
+
+for year, file_list in yeardict.items():
+    number = str(len(file_list))
+    while len(number) <= 3:
+        number = '0' + number
+
+    playlist_filename = f"playlist_{number}_{year}.txt"
+    with open(playlist_filename, "w") as f:
+        for file in file_list:
+            f.write(file + "\n")

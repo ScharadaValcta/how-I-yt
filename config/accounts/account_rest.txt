@@ -1,4 +1,7 @@
---match-title ASSASSIN https://www.youtube.com/playlist\?list\=UU94RlC_fWzpISqa43BIEiEQ 
+https://www.youtube.com/@maxklymenko
+https://www.youtube.com/@60_sekunden_wiki
+https://www.youtube.com/@70sekundenwiki
+--sponsorblock-remove all --match-title "ASSASSIN" https://www.youtube.com/TobinatorLetsPlay
 https://www.youtube.com/@DailyDoseOfInternet
 https://www.youtube.com/@FritzMeinecke
 --match-title falsch https://www.youtube.com/@ComedyKollektiv

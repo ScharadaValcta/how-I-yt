@@ -1,4 +1,7 @@
-https://www.youtube.com/@maxklymenko
+https://www.youtube.com/@Charlie_designs
+https://www.youtube.com/@albertatech
+https://www.youtube.com/@CleoAbram
+https://www.ardmediathek.de/sendung/straeter/Y3JpZDovL3dkci5kZS9zdHJhZXRlcg
 https://www.youtube.com/@60_sekunden_wiki
 https://www.youtube.com/@70sekundenwiki
 --sponsorblock-remove all --match-title "ASSASSIN" https://www.youtube.com/TobinatorLetsPlay
@@ -102,6 +105,6 @@ https://www.youtube.com/@mediacccde
 https://www.youtube.com/@MarcUweKling
 https://www.youtube.com/@7_vs._wild
 --sponsorblock-remove all https://www.youtube.com/@wbs_legal
-https://www.youtube.com/@CleoAbram
 https://www.youtube.com/@ElectroBOOM
 https://www.youtube.com/@UniverseLair
+https://www.youtube.com/@maxklymenko

@@ -1,11 +1,21 @@
 
 ./py_create_watchlist_py.py 2>/dev/null
 
-accounts=("ASSASSIN'S CREED REVELATIONS" "ASSASSIN'S CREED ROGUE" "ASSASSIN'S CREED： SHADOWS" "ASSASSIN'S CREED UNITY" "ASSASSIN'S CREED IV" "ASSASSIN'S CREED 3" "Assassin's Creed： Brotherhood" "CATCH ME" "38C3" "Adventure Buddies" "KRAFTKLUB" "Timberborn" "Snippet" "Out Now" "Trailer" "Teaser" "Ccamp 2023" "GPN 21" "EH21" "37C3" "Proxmox" "shorts" "linux" "rocket league" "windows" "music" "Internet" "lost" "Raspberry")
+accounts=("20youtube" "CatchMe 4" "ASSASSIN'S CREED ROGUE" "ASSASSIN'S CREED： SHADOWS" "ASSASSIN'S CREED UNITY" "ASSASSIN'S CREED IV" "CATCH ME" "38C3" "Adventure Buddies" "Timberborn" "Snippet" "Out Now" "Trailer" "Teaser" "Ccamp 2023" "GPN 21" "EH21" "37C3" "Proxmox" "linux" "rocket league" "windows" "_music" "Internet" "lost" "Raspberry")
 
 for i in "${accounts[@]}"; do
-    find ./20youtub*/* ./* -type f -name "*.mp4" -ipath "*$i*" 2>/dev/null | sort >> "playlist_$i.txt"
+#    find ./20youtub*/* ./* -type f -name "*.mp4" -ipath "*$i*" 2>/dev/null | sort >> "playlist_$i.txt"
+
+    tmpfile=$(mktemp)
+    find ./20youtub*/* ./* -type f -name "*.mp4" -ipath "*$i*" 2>/dev/null | sort > "$tmpfile"
+
+    count=$(wc -l < "$tmpfile")
+    count=$(printf "%04d" "$count")   # führende Nullen auf 4 Stellen
+
+    mv "$tmpfile" "playlist_${count}_${i}.txt"
 done
+
+
 
 find ./20youtub*/* ./* -type d -empty -delete 2>/dev/null
 
@@ -29,13 +39,16 @@ echo "Warning possible inkomplette"
 find -type f -name "*.temp.*" 
 
 #Deletion of fragments
+find -type f -name "*.f642.mp4" -delete
 find -type f -name "*.f625.mp4" -delete
 find -type f -name "*.f617.mp4" -delete
 find -type f -name "*.f616.mp4" -delete
 find -type f -name "*.f614.mp4" -delete
+find -type f -name "*.f609.mp4" -delete
 find -type f -name "*.f605.mp4" -delete
 find -type f -name "*.f401.mp4" -delete
 find -type f -name "*.f399.mp4" -delete
+find -type f -name "*.f398.mp4" -delete
 find -type f -name "*.f315.webm" -delete
 find -type f -name "*.f313.webm" -delete
 find -type f -name "*.f308.webm" -delete
@@ -45,6 +58,7 @@ find -type f -name "*.f299.mp4" -delete
 find -type f -name "*.f298.mp4*" -delete
 find -type f -name "*.f271.webm" -delete
 find -type f -name "*.f270.mp4" -delete
+find -type f -name "*.f251-1.webm" -delete
 find -type f -name "*.f251.webm" -delete
 find -type f -name "*.f248.webm" -delete
 find -type f -name "*.f247.webm" -delete

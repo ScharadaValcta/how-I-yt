@@ -4,6 +4,7 @@ $PWD = pwd 1>/dev/null 2>&1
 
 # Name der Datei, aus der die Zeilen gelesen werden sollen
 DATEI="config/accounts/account_rest.txt"
+COUNT=$(wc -l < "$DATEI")
 
 if [[ -e "$DATEI" ]]; then
 	echo "File exits: $DATEI"
@@ -18,8 +19,8 @@ else
 fi
 
 # Befehl, an den die Zeilen angehängt werden
-BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
-#BEFEHL2="yt-dlp -vU -i --yes-playlist --sponsorblock-remove all --download-archive config/yt-archive_sponsor.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_sponsorblock_%(id)s.%(ext)s --merge-output-format mp4 "
+BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20241101 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+#BEFEHL2="yt-dlp -vU -i --yes-playlist --sponsorblock-remove all --download-archive config/yt-archive_sponsor.txt --dateafter 20241101 -o %(upload_date)s/%(uploader)s/%(title)s_sponsorblock_%(id)s.%(ext)s --merge-output-format mp4 "
 #BEFEHL2="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --datebefore 20111231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
 
 #BEFEHL="yt-dlp -vF -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20231231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
@@ -28,17 +29,16 @@ BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --
 
 while IFS= read -r ZEILE; do
   # Füge die Zeile an den Befehl an und führe den Befehl aus
-  echo "Working on $ZEILE"
+  echo "Working on $ZEILE ($COUNT)"
   $BEFEHL $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
   #$BEFEHL2 $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
   #echo "$BEFEHL $ZEILE"
+  COUNT=$((COUNT - 1))
 done < "$DATEI"
-
-#killall watch
-#killall tail
 
 # Name der Datei, aus der die Zeilen gelesen werden sollen
 DATEI="config/accounts/account_music.txt"
+COUNT=$(wc -l < "$DATEI")
 
 if [[ -e "$DATEI" ]]; then
 	echo "File exits: $DATEI"
@@ -50,36 +50,11 @@ fi
 # Befehl, an den die Zeilen angehängt werden
 BEFEHL="yt-dlp -i -x -k --audio-format mp3 --yes-playlist --download-archive config/yt-archive.txt -o %(upload_date)s/%(uploader)s_music/%(title)s_%(id)s.%(ext)s --merge-output-format mp4"
 
-#watch -n 2 "pgrep -af yt-dlp | grep -oP 'https?://\S+'" &
-
 while IFS= read -r ZEILE; do
-    echo "Working on $ZEILE"
+  echo "Working on $ZEILE ($COUNT)"
   # Füge die Zeile an den Befehl an und führe den Befehl aus
   $BEFEHL $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
   #echo "$BEFEHL $ZEILE"
+  COUNT=$((COUNT - 1))
 done < "$DATEI"
 
-#killall watch
-
-#DATEI="config/accounts/account_rest.txt"
-#
-#if [[ -e "$DATEI" ]]; then
-#	echo "File exits: $DATEI"
-#else
-#	echo "File doesnt exits: $DATEI"
-#fi
-#
-## Befehl, an den die Zeilen angehängt werden
-#BEFEHL="yt-dlp -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20221231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
-#
-#
-#watch -n 2 "pgrep -af yt-dlp | grep -oP 'https?://\S+'" &
-#
-#while IFS= read -r ZEILE; do
-#  # Füge die Zeile an den Befehl an und führe den Befehl aus
-#  echo "Working on $ZEILE"
-#  $BEFEHL $ZEILE 
-#  #echo "$BEFEHL $ZEILE"
-#done < "$DATEI"
-#
-#killall watch

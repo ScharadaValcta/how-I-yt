@@ -228,7 +228,7 @@ try:
 except:
     pass
 
-patterns = ["./20youtub*/*/*/*.mp4", "./202*/*/*.mp4"]
+patterns = ["./20youtub*/*/*/*.mp4", "./20*/*/*.mp4"]
 files = []
 for pattern in patterns:
     files.extend(glob.glob(pattern))

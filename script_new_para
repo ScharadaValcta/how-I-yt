@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 $PWD = pwd 1>/dev/null 2>&1
-MAX_JOBS=5
+MAX_JOBS=1
 job_count=0
 
 # Name der Datei, aus der die Zeilen gelesen werden sollen
@@ -20,7 +20,8 @@ else
 fi
 
 # Befehl, an den die Zeilen angehängt werden
-BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+BEFEHL="yt-dlp -vU -i --yes-playlist -t sleep --download-archive config/yt-archive.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
+#BEFEHL="yt-dlp -vU -i --yes-playlist -t sleep --playlist-reverse --download-archive config/yt-archive.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
 #BEFEHL2="yt-dlp -vU -i --yes-playlist --sponsorblock-remove all --download-archive config/yt-archive_sponsor.txt --dateafter 20241201 -o %(upload_date)s/%(uploader)s/%(title)s_sponsorblock_%(id)s.%(ext)s --merge-output-format mp4 "
 #BEFEHL2="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --datebefore 20111231 -o %(upload_date)s/%(uploader)s/%(title)s_%(id)s.%(ext)s --merge-output-format mp4 "
 
@@ -31,7 +32,7 @@ BEFEHL="yt-dlp -vU -i --yes-playlist --download-archive config/yt-archive.txt --
 while IFS= read -r ZEILE; do
   # Füge die Zeile an den Befehl an und führe den Befehl aus
   echo "Working on $ZEILE"
-  $BEFEHL $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1 &
+  $BEFEHL $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1 && echo "Finished $ZEILE" &
 
   #$BEFEHL2 $ZEILE >> config/log/log_$(date '+%Y-%m-%d').txt 2>&1
   #echo "$BEFEHL $ZEILE"
@@ -58,7 +59,7 @@ fi
 
 
 # Befehl, an den die Zeilen angehängt werden
-BEFEHL="yt-dlp -i -x -k --audio-format mp3 --yes-playlist --download-archive config/yt-archive.txt -o %(upload_date)s/%(uploader)s_music/%(title)s_%(id)s.%(ext)s --merge-output-format mp4"
+BEFEHL="yt-dlp -i -x -k --audio-format mp3 --yes-playlist --playlist-reverse --download-archive config/yt-archive.txt -o %(upload_date)s/%(uploader)s_music/%(title)s_%(id)s.%(ext)s --merge-output-format mp4"
 
 #watch -n 2 "pgrep -af yt-dlp | grep -oP 'https?://\S+'" &
 

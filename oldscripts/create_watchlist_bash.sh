@@ -1,10 +1,9 @@
 
 ./py_create_watchlist_py.py 2>/dev/null
 
-accounts=("20youtube" "CatchMe 4" "ASSASSIN'S CREED ROGUE" "ASSASSIN'S CREED： SHADOWS" "ASSASSIN'S CREED UNITY" "ASSASSIN'S CREED IV" "CATCH ME" "38C3" "Adventure Buddies" "Timberborn" "Snippet" "Out Now" "Trailer" "Teaser" "Ccamp 2023" "GPN 21" "EH21" "37C3" "Proxmox" "linux" "rocket league" "windows" "_music" "Internet" "lost" "Raspberry")
+accounts=("Podcast" "20youtube" "CatchMe 4" "ASSASSIN'S CREED ROGUE" "ASSASSIN'S CREED： SHADOWS" "ASSASSIN'S CREED UNITY" "CATCH ME" "Adventure Buddies" "Timberborn" "Snippet" "Out Now" "Ccamp 2023" "GPN 21" "_music" "SURVIVAL SQUAD" "Otto beim KSK")
 
 for i in "${accounts[@]}"; do
-#    find ./20youtub*/* ./* -type f -name "*.mp4" -ipath "*$i*" 2>/dev/null | sort >> "playlist_$i.txt"
 
     tmpfile=$(mktemp)
     find ./20youtub*/* ./* -type f -name "*.mp4" -ipath "*$i*" 2>/dev/null | sort > "$tmpfile"
@@ -15,12 +14,10 @@ for i in "${accounts[@]}"; do
     mv "$tmpfile" "playlist_${count}_${i}.txt"
 done
 
-
-
 find ./20youtub*/* ./* -type d -empty -delete 2>/dev/null
 
 cat playlist_000* 2>/dev/null >> playlist_000.txt
-cat playlist_0001_* 2>/dev/null >> playlist_0001.txt
+cat playlist_0001_* 2>/dev/null | sort >> playlist_0001.txt
 
 cat playlist_nach_größe_gk.txt | head -10 >> playlist_nach_größe_gk_10.txt
 tac playlist_nach_größe_gk.txt | head -10 >> playlist_nach_größe_kg_10.txt
@@ -47,6 +44,7 @@ find -type f -name "*.f614.mp4" -delete
 find -type f -name "*.f609.mp4" -delete
 find -type f -name "*.f605.mp4" -delete
 find -type f -name "*.f401.mp4" -delete
+find -type f -name "*.f400.mp4" -delete
 find -type f -name "*.f399.mp4" -delete
 find -type f -name "*.f398.mp4" -delete
 find -type f -name "*.f315.webm" -delete
@@ -77,3 +75,7 @@ echo "Warning possible fragments"
 find -type f -name "*.part" | sort
 find -type f -name "*.ytdl" | sort 
 find -type f -name "*\.f*" | sort
+
+echo "Remove possible"
+find -type f -name "*Gray Area*"
+find -type f -name "*Das Beste*"

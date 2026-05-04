@@ -4,6 +4,7 @@ import glob
 import os
 import subprocess
 from collections import defaultdict
+from datetime import datetime
 
 #delete playlist*.txt
 txt = glob.glob('playlist*.txt')
@@ -31,7 +32,7 @@ for i in sorted_files:
         longvid.append(i)
 
 worddic = dict()
-wordlist = ["the","das","der","auf","with","für","die","mit","von","und","ist","a","an","","die","the","of","s","im","to","das","in","so"]
+wordlist = ["the","das","der","auf","with","für","die","mit","von","und","ist","a","an","die","the","of","s","im","to","das","in","so"]
 
 dictionary = dict()
 
@@ -63,6 +64,35 @@ for i in dictionary:
             my_file.write(k)
             my_file.write("\n")
 
+#only friday of Real Civil Engineer
+def wochentag_von_datum(datum_string):
+    try:
+        # Datum parsen
+        datum = datetime.strptime(datum_string, "%Y%m%d")
+        # Deutsche Wochentage
+        wochentage = [
+            "Montag", "Dienstag", "Mittwoch",
+            "Donnerstag", "Freitag", "Samstag", "Sonntag"
+        ]
+        # Wochentag bestimmen
+        return wochentage[datum.weekday()]
+    except ValueError:
+        return "Ungültiges Datumsformat! Bitte YYYYMMDD verwenden."
+
+Timberborn = []
+for i in dictionary["Real Civil Engineer"]:
+    date = i[:8]
+    #print("Date: " + date)
+    if "Freitag" == wochentag_von_datum(date):
+        #print("Weekday: " + wochentag_von_datum(date))
+        #print(i)
+        Timberborn = Timberborn + [i]
+
+file = "playlist_" + "RCE Freitag"  + ".txt"
+with open(file, "w") as my_file:
+    for k in Timberborn:
+        my_file.write(k)
+        my_file.write("\n")
 
 list_for_sami = []
 list_for_sami_reverse = []
@@ -103,7 +133,7 @@ while dictionary:
         try:
             file = "playlist_one.txt"
             with open(file, "w") as my_file:
-                for i in list_in_iteration:
+                for i in sorted(list_in_iteration):
                     my_file.write(i)
                     my_file.write("\n")
         except:
@@ -196,7 +226,7 @@ while dictionary:
                 number = '0' + number
             file = "playlist_one_new.txt"
             with open(file, "w") as my_file:
-                for i in list_in_iteration:
+                for i in sorted(list_in_iteration).reverse():
                     my_file.write(i)
                     my_file.write("\n")
         except:
@@ -263,6 +293,34 @@ with open("playlist_nach_länge.txt", "w") as f:
     for file in sorted_files_length:
         f.write(file + "\n")
 
+def get_mb_per_second(filename):
+    try:
+        size_bytes = os.path.getsize(filename)
+        size_mb = size_bytes / (1024 * 1024)
+
+        length = get_video_length(filename)
+        if length == 0:
+            return 0
+
+        return size_mb / length
+    except Exception:
+        return 0
+
+sorted_files = sorted(files, key=get_mb_per_second, reverse=True)
+
+with open("playlist_nach_mb_pro_sekunde_with_values.txt", "w", encoding="utf-8") as f:
+    for file in sorted_files:
+        mbps = get_mb_per_second(file)
+        length = get_video_length(file)
+        size_mb = os.path.getsize(file) / (1024 * 1024)
+
+        f.write(
+            f"{file}\n"
+            #f"{length:.2f}s | "
+            #f"{size_mb:.2f}MB | "
+            #f"{mbps:.3f} MB/s\n"
+        )
+
 
 def get_video_resolution(filename):
     try:
@@ -274,10 +332,17 @@ def get_video_resolution(filename):
             stderr=subprocess.PIPE,
             text=True
         )
-        #return result.stdout.strip().replace(",", "x")
-        width, height = map(int, result.stdout.strip().split(","))
+        #width, height = map(int, result.stdout.strip().split(","))
+        parts = result.stdout.strip().split(",")
+        width, height = map(int, parts[:2])
         return "hochkant" if height > width else "quer"
-    except Exception:
+    except Exception as e:
+        print("Resolution unknown")
+        print("File:", filename)
+        print("stdout:", repr(result.stdout))
+        print("stderr:", repr(result.stderr))
+        print("Error:", repr(e))
+        #traceback.print_exc()
         return "unknown"
 
 # Dictionary für die Playlists nach Auflösung

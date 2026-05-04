@@ -7,8 +7,13 @@ if [ -z "$1" ]; then
 fi
 
 # Top 10 Einträge (existierende Dateien aus Playlist)
-awk '{gsub(/\$/, "\\$", $0); system("ls \"" $0 "\" 2>/dev/null")}' "$1" | head -5 > playlist_remove.txt
-awk '{gsub(/\$/, "\\$", $0); system("ls \"" $0 "\" 2>/dev/null")}' "$1" | tac | head -5 >> playlist_remove.txt
+awk '{gsub(/\$/, "\\$", $0); system("ls \"" $0 "\" 2>/dev/null")}' "$1" | head -5 > playlist_remove.txt &
+awk '{gsub(/\$/, "\\$", $0); system("ls \"" $0 "\" 2>/dev/null")}' "$1" | tac | head -5 >> playlist_remove.txt &
+
+while [ $(wc -l < playlist_remove.txt) -lt 10 ]; do
+  sleep 1
+done
+echo "Die Datei hat jetzt 10 Einträge!"
 
 # Zeige, was abgespielt wird
 cat playlist_remove.txt
